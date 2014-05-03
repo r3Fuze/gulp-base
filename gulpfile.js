@@ -69,6 +69,12 @@ gulp.task("extras", function () {
         .pipe(gulp.dest("dist"));
 });
 
+
+gulp.task("mocha", function() {
+    return gulp.src("test/*-test.js")
+        .pipe($.mocha({ reporter: "dot" })); // dot, list, spec
+});
+
 gulp.task("clean", function () {
     return gulp.src([".tmp", "dist"], { read: false }).pipe($.clean());
 });

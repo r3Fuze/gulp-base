@@ -1,6 +1,13 @@
 {
-  "name": "new-project",
-  "version": "0.0.0",
+  "name": "gulp-base",
+  "private": true,
+  "version": "0.0.1",
+  "description": "This repo is just me playing around with gulp.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/r3Fuze/gulp-base.git"
+  },
   "dependencies": {
     "express": "^4.1.1",
     "static-favicon": "^2.0.0-alpha",
@@ -8,8 +15,7 @@
     "method-override": "^1.0.0",
     "morgan": "^1.0.0",
     "compression": "^1.0.2",
-    "body-parser": "^1.0.2",
-    "browser-sync": "^0.8.2"
+    "body-parser": "^1.0.2"
   },
   "devDependencies": {
     "connect": "^2.14.4",
@@ -33,7 +39,11 @@
     "jshint-stylish": "^0.2.0",
     "opn": "^0.1.1",
     "wiredep": "^1.4.3",
-    "gulp-util": "^2.2.14"
+    "gulp-util": "^2.2.14",
+    "browser-sync": "^0.8.2",
+    "gulp-mocha": "^0.4.1",
+    "mocha": "^1.18.2",
+    "chai": "^1.9.1"
   },
   "engines": {
     "node": ">=0.10.0"
