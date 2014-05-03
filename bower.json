@@ -1,0 +1,20 @@
+{
+  "name": "new-project",
+  "private": true,
+  "dependencies": {
+    "bootstrap-sass-official": "~3.1.1",
+    "modernizr": "~2.6.2",
+    "jquery": "~1.11.0",
+    "lil-b": "https://github.com/ItsJonQ/lil-b.git#~1.0.2",
+    "fontawesome": "~4.0.3"
+  },
+  "devDependencies": {},
+  "overrides": {
+    "fontawesome": {
+      "main": [
+        "css/font-awesome.css",
+        "fonts/*"
+      ]
+    }
+  }
+}
