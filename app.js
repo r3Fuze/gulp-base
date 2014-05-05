@@ -26,7 +26,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // Exports
-var server = http.createServer(app);
+var server = http.createServer("app");
 
 app.listen = function() {
     server.listen.apply(server, arguments);
