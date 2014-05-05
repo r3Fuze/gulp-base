@@ -15,6 +15,7 @@ var middleware = {
 
 var app = express();
 
+// TODO: swig
 app.set("views", path.join(__dirname, "views"));
 
 if (process.env.NODE_ENV === "production") {
@@ -24,6 +25,7 @@ if (process.env.NODE_ENV === "production") {
     app.use(express.static(path.join(__dirname, ".tmp")));
 }
 
+// Exports
 var server = http.createServer(app);
 
 app.listen = function() {
