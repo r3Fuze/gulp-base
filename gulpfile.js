@@ -6,6 +6,7 @@ var gulp = require("gulp");
 // load plugins
 var $ = require("gulp-load-plugins")();
 
+// Attach non-gulp plugins to `$` variable
 $.browserSync = require("browser-sync");
 $.wiredep     = require("wiredep").stream;
 
@@ -70,6 +71,7 @@ gulp.task("extras", function () {
 });
 
 
+// TODO: use Jasmine???
 gulp.task("mocha", function() {
     return gulp.src("test/*-test.js")
         .pipe($.mocha({ reporter: "dot" })); // dot, list, spec
@@ -120,7 +122,7 @@ gulp.task("browser-sync", function() {
     });
 });
 
-// Remove this task?
+// TODO: Remove this task?
 gulp.task("serve", ["express", "styles"], function () {
     require("opn")("http://localhost:3002"); // port 3002 for browser-sync
 });
@@ -142,6 +144,7 @@ gulp.task("wiredep", function () {
 });
 
 gulp.task("watch", ["express", "serve", "browser-sync"], function () {
+    // TODO: Remove these comments
     // var server = $.livereload();
 
     // watch for changes
