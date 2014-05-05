@@ -1,6 +1,9 @@
 /* global $:true */
 "use strict";
 
+// TODO: Create TODO file
+// HTML lint?
+
 var gulp = require("gulp");
 
 // load plugins
