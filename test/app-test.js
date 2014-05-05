@@ -1,5 +1,8 @@
+/* jshint expr: true */
 /* global describe, it */
 "use strict";
+
+// TODO: Should we just not use `.be.null / .be.true`?
 
 var expect = require("chai").expect;
 
@@ -18,5 +21,11 @@ describe("String", function () {
 
             expect( str.toLowerCase() ).to.equal("this string is uppercase");
         });
+    });
+});
+
+describe("String", function() {
+    it("should do stuff", function() {
+        expect("something").to.not.be.null;
     });
 });
