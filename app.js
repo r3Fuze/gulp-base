@@ -21,6 +21,8 @@ app.set("views", path.join(__dirname, "views"));
 if (process.env.NODE_ENV === "production") {
 
 } else {
+    app.use(middleware.logger("dev"));
+
     app.use(express.static(path.join(__dirname, "public")));
     app.use(express.static(path.join(__dirname, ".tmp")));
 }
