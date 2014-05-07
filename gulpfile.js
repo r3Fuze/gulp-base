@@ -2,7 +2,7 @@
 "use strict";
 
 // TODO: Create TODO file
-// HTML lint?
+// HTML lint? Maybe more?
 
 var gulp = require("gulp");
 
