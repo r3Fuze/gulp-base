@@ -2,7 +2,10 @@
 /* global describe, it */
 "use strict";
 
-var expect = require("chai").expect;
+var expect  = require("chai").expect,
+    request = require("supertest");
+
+var app = require("../app");
 
 describe("String", function () {
     describe(".replace()", function () {
@@ -25,5 +28,22 @@ describe("String", function () {
 describe("String", function() {
     it("should do stuff", function() {
         expect("something").to.not.be.null;
+    });
+});
+
+describe("Server", function() {
+
+    before(function(done) {
+        app.listen(9000, done);
+    });
+
+    after(function(done) {
+        app.close(done);
+    });
+
+    it("should be running", function(done) {
+        request(app)
+            .get("/")
+            .expect(200, done);
     });
 });
