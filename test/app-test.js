@@ -1,5 +1,5 @@
 /* jshint expr: true */
-/* global describe, it */
+/* global describe, it, before, after */
 "use strict";
 
 var expect  = require("chai").expect,
