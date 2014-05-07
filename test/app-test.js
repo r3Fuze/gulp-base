@@ -2,8 +2,6 @@
 /* global describe, it */
 "use strict";
 
-// TODO: Should we just not use `.be.null / .be.true`?
-
 var expect = require("chai").expect;
 
 describe("String", function () {
