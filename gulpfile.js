@@ -13,6 +13,14 @@ var $ = require("gulp-load-plugins")();
 $.browserSync = require("browser-sync");
 $.wiredep     = require("wiredep").stream;
 
+
+function onError(err) {
+    $.util.beep(); // TODO: Will this destroy the world?
+    console.log(err.toString());
+    process.exit(1);
+}
+
+
 gulp.task("styles", function () {
     return gulp.src("public/styles/main.scss")
         .pipe($.rubySass({
@@ -74,10 +82,10 @@ gulp.task("extras", function () {
 });
 
 
-// TODO: use Jasmine???
 gulp.task("mocha", function() {
     return gulp.src("test/*-test.js")
-        .pipe($.mocha({ reporter: "dot" })); // dot, list, spec
+        .pipe($.mocha({ reporter: "dot" })) // dot, list, spec
+        .on("error", onError); // TODO: Find a fix for this!
 });
 
 gulp.task("clean", function () {

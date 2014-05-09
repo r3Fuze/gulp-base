@@ -1,9 +1,10 @@
 /* jshint expr: true */
-/* global describe, it, before, after */
+/* global describe, it, before, after, $:true */
 "use strict";
 
 var expect  = require("chai").expect,
-    request = require("supertest");
+    request = require("supertest"),
+    cheerio = require("cheerio"), $;
 
 var app = require("../app");
 
@@ -45,5 +46,19 @@ describe("Server", function() {
         request(app)
             .get("/")
             .expect(200, done);
+    });
+
+    it("should do some DOM testing", function(done) {
+        request(app)
+            .get("/")
+            .end(function(err, res) {
+                if (err) { return done(err); }
+
+                $ = cheerio.load(res.text);
+
+                expect($(".header h3").text()).to.equal("new-project");
+
+                done();
+            });
     });
 });
