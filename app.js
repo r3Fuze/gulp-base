@@ -2,7 +2,8 @@
 
 var express = require("express"),
     path    = require("path"),
-    http    = require("http");
+    http    = require("http"),
+    swig    = require("swig");
 
 var middleware = {
     logger:         require("morgan"),
@@ -15,19 +16,25 @@ var middleware = {
 
 var app = express();
 
-// TODO: swig
-app.set("views", path.join(__dirname, "views"));
+// TODO: Replace with NODE_ENV stuff
+var dev = true;
 
+// TODO: swig
+app.engine("swig", swig.renderFile);
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "swig");
 
 app.use(middleware.bodyParser());
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.static(path.join(__dirname, ".tmp")));
 
-if (process.env.NODE_ENV === "development") {
+if (dev) {
     // Development
+    swig.setDefaults({ cache: false });
 }
 
+require("./app/router")(app);
 
 // Exports
 var server = http.createServer(app);

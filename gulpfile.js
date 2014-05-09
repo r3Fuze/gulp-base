@@ -109,7 +109,8 @@ gulp.task("express", function() {
 
 gulp.task("browser-sync", function() {
     $.browserSync.init([
-        "public/*.html",
+        "public/*.html", // TODO: Only swig
+        "views/**/*",
         ".tmp/styles/**/*.css",
         "public/scripts/**/*.js",
         "public/images/**/*"
@@ -132,12 +133,20 @@ gulp.task("wiredep", function () {
         }))
         .pipe(gulp.dest("public/styles"));
 
+    // TODO: Only swig, where should swig files be placed?
     gulp.src("public/*.html")
         .pipe($.wiredep({
             directory: "public/bower_components",
             exclude: ["bootstrap-sass-official"]
         }))
         .pipe(gulp.dest("public"));
+
+    gulp.src("views/test.swig")
+        .pipe($.wiredep({
+            directory: "public/bower_components",
+            exclude: ["bootstrap-sass-official"]
+        }))
+        .pipe(gulp.dest("views"));
 });
 
 gulp.task("watch", ["express", "serve", "browser-sync"], function () {
