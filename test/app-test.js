@@ -35,6 +35,7 @@ describe("String", function() {
 describe("Server", function() {
 
     before(function(done) {
+        // TODO: Change port. Make it configurable?
         app.listen(9000, done);
     });
 
