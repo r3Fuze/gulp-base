@@ -18,14 +18,16 @@ var app = express();
 // TODO: swig
 app.set("views", path.join(__dirname, "views"));
 
-if (process.env.NODE_ENV === "production") {
 
-} else {
-    app.use(middleware.bodyParser());
+app.use(middleware.bodyParser());
 
-    app.use(express.static(path.join(__dirname, "public")));
-    app.use(express.static(path.join(__dirname, ".tmp")));
+app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, ".tmp")));
+
+if (process.env.NODE_ENV === "development") {
+    // Development
 }
+
 
 // Exports
 var server = http.createServer(app);
