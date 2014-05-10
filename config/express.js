@@ -1,7 +1,7 @@
 "use strict";
 
 var express = require("express"),
-    // config  = require("./config"),
+    config  = require("./config"),
     path    = require("path"),
     swig    = require("swig");
 
@@ -21,6 +21,10 @@ module.exports = function() {
     var app = express();
 
     // FIXME: App locals here
+    app.locals.settings = {
+        env: process.env.NODE_ENV
+    };
+    app.locals.title = config.app.title;
 
     // FIXME: Passing the request url to environment locals
     app.use(function(req, res, next) {

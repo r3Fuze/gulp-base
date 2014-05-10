@@ -37,6 +37,7 @@
 
             <div class="jumbotron">
                 <h1 class="text-uppercase">'Allo, 'Allo!</h1>
+                <h1>Enviroment: {{ env }}</h1>
                 <p class="lead">Always a pleasure scaffolding your apps.</p>
                 <p><a class="btn btn-lg btn-success" href="#">Splendid!</a></p>
             </div>
@@ -76,31 +77,28 @@
             ga('create','UA-XXXXX-X');ga('send','pageview');
         </script>
 
-        <!-- build:js scripts/vendor.js -->
-        <!-- bower:js -->
-        <script src="bower_components/jquery/dist/jquery.js"></script>
-        <script src="bower_components/modernizr/modernizr.js"></script>
-        <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-        <!-- endbower -->
-        <!-- endbuild -->
+        {# TODO: Use if tag for production/development. Remove build tags? #}
 
-        <!-- build:js scripts/plugins.js -->
-        <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/affix.js"></script>
-        <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/alert.js"></script>
-        <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/dropdown.js"></script>
-        <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/tooltip.js"></script>
-        <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/modal.js"></script>
-        <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/transition.js"></script>
-        <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/button.js"></script>
-        <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/popover.js"></script>
-        <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/carousel.js"></script>
-        <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/scrollspy.js"></script>
-        <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/collapse.js"></script>
-        <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/tab.js"></script>
-        <!-- endbuild -->
+        {% if settings.env === "production" %}
+            {# jquery, modernizr, bootstrap #}
+            <script src="scripts/plugins.js"></script>
+            {# all in scripts #}
+            <script src="scripts/main.js"></script>
+        {% else %}
+            {# modernizr gets included twice, but only loads once #}
+            <!-- build:js scripts/plugins.js -->
+            <!-- bower:js -->
+            <script src="bower_components/jquery/dist/jquery.js"></script>
+            <script src="bower_components/modernizr/modernizr.js"></script>
+            <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+            <!-- endbower -->
+            <!-- endbuild -->
 
-        <!-- build:js scripts/main.js -->
-        <script src="scripts/main.js"></script>
-        <!-- endbuild -->
+            <!-- build:js scripts/main.js -->
+            <script src="scripts/app.js"></script>
+            <script src="scripts/stuff.js"></script>
+            <!-- endbuild -->
+        {% endif %}
+
 </body>
 </html>

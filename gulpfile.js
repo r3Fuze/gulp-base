@@ -40,12 +40,14 @@ gulp.task("scripts", function () {
         .pipe($.size());
 });
 
+// TODO: Should we move/server swig files from somewhere else????
+// TODO: Replace useref part and move concat/minify to another task?
 gulp.task("html", ["styles", "scripts"], function () {
     var jsFilter = $.filter("**/*.js");
     var cssFilter = $.filter("**/*.css");
 
     // TODO: Only swig
-    return gulp.src("views/*.swig")
+    return gulp.src(["public/*.html", "views/**/*.swig"])
         .pipe($.useref.assets({ searchPath: "{.tmp,public}" }))
         .pipe(jsFilter)
         .pipe($.uglify())
@@ -114,7 +116,6 @@ gulp.task("express", function() {
 
 gulp.task("browser-sync", function() {
     $.browserSync.init([
-        "public/*.html", // TODO: Only swig
         "views/**/*",
         ".tmp/styles/**/*.css",
         "public/scripts/**/*.js",
@@ -132,26 +133,19 @@ gulp.task("serve", ["express", "styles"], function () {
 
 // Inject bower components. Run when new bower modules are installed
 gulp.task("wiredep", function () {
-    gulp.src("public/styles/*.scss")
-        .pipe($.wiredep({
-            directory: "public/bower_components"
-        }))
-        .pipe(gulp.dest("public/styles"));
-
-    // TODO: Only swig, where should swig files be placed?
-    gulp.src("public/*.html")
-        .pipe($.wiredep({
-            directory: "public/bower_components",
-            exclude: ["bootstrap-sass-official"]
-        }))
-        .pipe(gulp.dest("public"));
+    // TODO: Do we need wiredep in our scss files? Remove later?
+    // gulp.src("public/styles/*.scss")
+    //    .pipe($.wiredep({
+    //        directory: "public/bower_components"
+    //    }))
+    //    .pipe(gulp.dest("public/styles"));
 
     // Swig files are served as being in the public directory
     // TODO: Fix the paths that are being injected, current method is hacky
     gulp.src("views/test.swig")
         .pipe($.wiredep({
             directory: "public/bower_components",
-            exclude: ["bootstrap-sass-official"]
+            exclude: []
         }))
         .pipe($.replace("../public/", "")) // Fix the path for bower stuff
         .pipe(gulp.dest("views"));
