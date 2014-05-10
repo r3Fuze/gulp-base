@@ -141,11 +141,14 @@ gulp.task("wiredep", function () {
         }))
         .pipe(gulp.dest("public"));
 
+    // Swig files are served as being in the public directory
+    // TODO: Fix the paths that are being injected, current method is hacky
     gulp.src("views/test.swig")
         .pipe($.wiredep({
             directory: "public/bower_components",
             exclude: ["bootstrap-sass-official"]
         }))
+        .pipe($.replace("../public/", "")) // Fix the path for bower stuff
         .pipe(gulp.dest("views"));
 });
 

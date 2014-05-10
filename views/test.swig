@@ -6,9 +6,9 @@
 
         <!-- build:css styles/vendor.css -->
         <!-- bower:css -->
-        <link rel="stylesheet" href="../public/bower_components/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="../public/bower_components/lil-b/dist/css/b.css" />
-        <link rel="stylesheet" href="../public/bower_components/fontawesome/css/font-awesome.css" />
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="bower_components/lil-b/dist/css/b.css" />
+        <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.css" />
         <!-- endbower -->
         <!-- endbuild -->
 
@@ -78,9 +78,9 @@
 
         <!-- build:js scripts/vendor.js -->
         <!-- bower:js -->
-        <script src="../public/bower_components/jquery/dist/jquery.js"></script>
-        <script src="../public/bower_components/modernizr/modernizr.js"></script>
-        <script src="../public/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="bower_components/jquery/dist/jquery.js"></script>
+        <script src="bower_components/modernizr/modernizr.js"></script>
+        <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
         <!-- endbower -->
         <!-- endbuild -->
 
