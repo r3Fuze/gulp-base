@@ -4,7 +4,8 @@
 // TODO: Create TODO file
 // HTML lint? Maybe more?
 
-var gulp = require("gulp");
+var gulp   = require("gulp"),
+    config = require("./config/config");
 
 // load plugins
 var $ = require("gulp-load-plugins")();
@@ -43,7 +44,8 @@ gulp.task("html", ["styles", "scripts"], function () {
     var jsFilter = $.filter("**/*.js");
     var cssFilter = $.filter("**/*.css");
 
-    return gulp.src("public/*.html")
+    // TODO: Only swig
+    return gulp.src("views/*.swig")
         .pipe($.useref.assets({ searchPath: "{.tmp,public}" }))
         .pipe(jsFilter)
         .pipe($.uglify())
@@ -82,7 +84,10 @@ gulp.task("extras", function () {
 });
 
 
+// TODO: Use karma?
 gulp.task("mocha", function() {
+    // TODO: Replace this with something else
+    process.env.NODE_ENV = "test";
     return gulp.src("test/*-test.js")
         .pipe($.mocha({ reporter: "dot" })) // dot, list, spec
         .on("error", onError); // TODO: Find a fix for this!
@@ -100,10 +105,10 @@ gulp.task("default", ["clean"], function () {
 });
 
 gulp.task("express", function() {
-    var app = require("./app");
+    var app = require("./server");
 
-    app.listen(9000, function() {
-        $.util.log("Started express web server on http://localhost:9000");
+    app.listen(config.port, function() {
+        $.util.log("Started express web server on http://localhost:" + config.port);
     });
 });
 
@@ -115,7 +120,7 @@ gulp.task("browser-sync", function() {
         "public/scripts/**/*.js",
         "public/images/**/*"
     ], {
-        proxy: "localhost:9000", // Express url (make configurable)
+        proxy: "localhost:" + config.port, // Express url (make configurable)
         open: false // Don't open browser
     });
 });
