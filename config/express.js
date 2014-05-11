@@ -96,7 +96,7 @@ module.exports = function() {
     // Handle 404. This has to go last
     app.use(function(req, res) {
         // FIXME: Render
-        res.status(404).send("Not found");
+        res.status(404).send("404: Not found");
     });
 
     return app;
