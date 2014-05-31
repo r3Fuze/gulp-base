@@ -4,7 +4,7 @@ module.exports = {
     app: {
         title: "REPLACEME",
         description: "Place description here",
-        keyworlds: "keyword, wat"
+        keywords: "keyword, wat"
     },
     port: process.env.PORT || 3000
 };

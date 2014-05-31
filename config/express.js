@@ -20,7 +20,6 @@ var middleware = {
 module.exports = function() {
     var app = express();
 
-    // FIXME: App locals here
     app.locals.settings = {
         env: process.env.NODE_ENV
     };
@@ -41,7 +40,7 @@ module.exports = function() {
     }));*/
 
     // FIXME: Find out what this does
-    app.set("showStackError". true);
+    app.set("showStackError", true);
 
     // TODO: swig
     app.engine("swig", swig.renderFile);

@@ -1,6 +1,6 @@
 "use strict";
 
-var app = require("./app");
+var app = require("./server"); // require server
 
 app.listen(9000, function() {
     console.log("Server listening on port 9000");
