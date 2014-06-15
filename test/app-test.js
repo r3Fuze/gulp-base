@@ -22,7 +22,7 @@ describe("String", function () {
         it("should make strings lowercase", function () {
             var str = "THIS STRING is uPPerCASE";
 
-            expect(str.toLowerCase()).to.equal("this string is uppercase");
+            expect(str.toLowerCase()).to.equal("this string is uppercase.");
         });
     });
 });
